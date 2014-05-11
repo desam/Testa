@@ -2,8 +2,11 @@
 <html lang="fr">
 <head>
     <title>TESTA - Your opinion counts ! </title>
-    <LINK REL=StyleSheet HREF="style/style.css" TYPE="text/css">
+    <link REL=StyleSheet HREF="style/style.css" TYPE="text/css">
+    <link type="text/css" rel="stylesheet" href="jQuery-TE_v.1.4.0/jquery-te-1.4.0.css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js" charset="utf-8"></script>
 </head>
 <body>
 <div id="conteneur">

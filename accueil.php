@@ -1,5 +1,5 @@
 <div id="accueil">
-<h3 class="article_titre"> <a href="index.php?action=writetest"> Publier votre avis maintenant ! </a>
+<h3 class="article_titre">
 <table class="espace">
 <tr>
     <td class="cell"> <a href="index.php?action=television">Television </a></td>
