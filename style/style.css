@@ -1,3 +1,15 @@
+#contact_top{
+width:276px;
+float:left;
+}
+
+#login-mdp{
+border: 1px solid;
+float: right;
+font-size: 8pt;
+margin-right: 6px;
+}
+
 #footer a:link {color:#FFFFFF;}      /* unvisited link */
 #footer a:visited {color:#FFFFFF;}  /* visited link */
 #footer a:hover {color:#FFFFFF;}  /* mouse over link */
@@ -346,7 +358,7 @@ font-weight:bold;
 
 #contact{
 padding: 5px;
-width: 300px;
+width: 900px;
 }
 
 #logo #logo_corp{

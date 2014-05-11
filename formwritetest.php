@@ -1,13 +1,35 @@
 <div id="writeatest">
-	<h2> Write a test </h2>
-	Title: <input type="text" name="title"><br>
-	Domain: <input type="text" name="domain"><br>
-	Marque: <input type="text" name="marque"><br>
-	Model: <input type="text" name="model"><br>
-	Summary:<textarea rows="4" cols="50">
-		  	</textarea><br>
-	Text: 	<textarea rows="4" cols="50">
-		   	</textarea><br>	
-	<input type="submit" name="submit">
-	<input type="reset" name="reset"><br>
+	<h2> Publier un avis </h2>
+	<table>
+	<tr>
+		<td>Titre:</td>
+		<td> <input type="text" name="title"></td>
+	</tr>
+	<tr>
+		<td>Domaine:</td>
+		<td> <input type="text" name="domain"></td>
+	</tr>
+	<tr>
+		<td>Marque:</td>
+		<td> <input type="text" name="marque"></td>
+	</tr>
+	<tr>
+		<td>Mod&egrave;le:</td>
+		<td> <input type="text" name="model"></td>
+	</tr>
+	<tr>
+		<td>R&eacute;sum&eacute;:</td>
+		<td><textarea rows="4" cols="50">
+		  	</textarea></td>
+	</tr>
+	<tr>
+		<td>Contenu:</td>
+		<td><textarea rows="4" cols="50"></textarea></td>
+	</tr>
+	<tr>
+	  	<td></td>
+		<td><input type="submit" name="submit">
+		<input type="reset" name="reset"></td>
+	</tr>
+	</table>
 </div>
