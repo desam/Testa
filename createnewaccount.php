@@ -1,5 +1,4 @@
 <div id="newaccount">
-<input type="reset" name="cancel"><br>
 <h2>Cr&eacute;ation d'un nouveau compte</h2>
 
 <table>
