@@ -16,6 +16,33 @@
 	</p>
 </div>
 
-<?php afficherTests(1); ?>
+<?php
+//Lancer la fonction au bout de 15s et récupérer la dernière date article en entrée 
+	genererJSON(1,'2014-05-24 15:49:13');
 
+//Afficher le résultat si tout est OK
+	$json =file_get_contents("style/results.json");
+	$obj = json_decode($json);		
+ 	
+ 	$vars = get_object_vars($obj);
+ 	
+ 	foreach($obj->posts as $post){
+    $contenu = $post->contenu;
+    $date = $post->datepublication;
+	$iduser = $post->iduser;
+	echo '<div class="">';
+			$tabuser = getUser($iduser);
+			echo '<div class="article-image2">'.$tabuser[0]['nameuser'].' '. 
+			$tabuser[0]['firstname'].'</div>';
+			echo '<div class="contenu-article">';
+			echo '<div class="dateheure">'.$date.'</div><br>';
+			echo "<p>".$contenu."</p>";
+			echo '</div>';
+			echo '</div>';
+
+	}
+ 	
+ 	afficherTests(1); 
+ 	
+ 	?>
 </div>

@@ -97,7 +97,7 @@ function getUser($id) {
 
 function afficherTests($idproduit) {
 	$idproduit = 1;
-	$sql = "SELECT * FROM article WHERE idproduct=$idproduit ORDER BY datearticle DESC;";
+	$sql = "SELECT * FROM article WHERE idproduct=$idproduit ORDER BY datearticle DESC LIMIT 0,15;";
 	$ref = query($sql);
 	$tab = enreg($ref);
 
@@ -115,6 +115,32 @@ function afficherTests($idproduit) {
 		}
 	
 	}
+}
+
+function genererJSON($idproduct,$date){
+
+	$sql = "SELECT * FROM article WHERE idproduct =$idproduct 
+	AND datearticle > '$date' ORDER BY datearticle DESC LIMIT 0 , 20;";
+	$ref = query($sql);
+	$tab = enreg($ref);
+	$posts=array();
+if ((count($tab)-1)!=0) {
+	for($i=0 ; $i < count($tab)-1 ; $i++) {
+		$idarticle = $tab[$i]['idarticle'];
+		$contenu = $tab[$i]['summaryarticle']; 
+		$datepub = $tab[$i]['datearticle'];
+		$iduser = $tab[$i]['iduser'];
+		$posts[] = array('contenu'=> $contenu, 'datepublication'=> $datepub, 'idarticle'=>$idarticle,
+		'iduser'=> $iduser);
+	} 
+}
+
+$response['posts'] = $posts;
+
+$fp = fopen('style/results.json', 'w');
+fwrite($fp, json_encode($response));
+fclose($fp);
+
 }
 
 ?>

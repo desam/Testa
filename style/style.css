@@ -230,10 +230,12 @@ font-size: 10pt;
 
 
 .text-article{
-  border-bottom: 2px solid;
-  float: left;
-  width: 675px;
-  padding:5px;
+  	border: 1px solid;
+    float: left;
+    height: 73px;
+    margin: 5px;
+    padding: 3px;
+    width: 675px;
 }
 
 #article{
