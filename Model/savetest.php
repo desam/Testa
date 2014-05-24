@@ -49,4 +49,72 @@ function CreateUser() {
 		return false;
 }
 
+function Login() {
+	if (!empty($_POST['login'])&&!empty($_POST['password']))
+	{
+		$login=$_POST['login'];
+		$password=sha1($_POST['password']);
+		
+		$sql="SELECT * FROM user WHERE email='$login' AND password='$password';";
+		$ref=query($sql);
+		$tab=enreg($ref);
+		
+		if ((count($tab)-1)!=0)
+		{
+			if(!isset($_SESSION['login'])) {
+			$_SESSION['login'] = $tab[0]['email'];
+			$_SESSION['userid'] = $tab[0]['iduser'];
+			$_SESSION['name'] = $tab[0]['nameuser'];
+			$_SESSION['firstname'] = $tab[0]['firstname'];
+			$_SESSION['birthday'] = $tab[0]['birthday'];
+			}
+			return true;
+		}
+		else 
+			return false;
+	}
+	else 
+		return false;
+ }
+ 
+ function deconnexion()
+ {
+  // On détruit les variables de notre session
+  session_unset ();
+
+	// On détruit notre session
+  session_destroy ();
+ }
+
+ 
+function getUser($id) {
+	$sql = "SELECT * FROM user WHERE iduser=$id;";
+	$ref = query($sql);
+	$tab = enreg($ref);
+	return $tab;
+}
+
+
+function afficherTests($idproduit) {
+	$idproduit = 1;
+	$sql = "SELECT * FROM article WHERE idproduct=$idproduit ORDER BY datearticle DESC;";
+	$ref = query($sql);
+	$tab = enreg($ref);
+
+	if ((count($tab)-1)!=0){
+		for($i=0 ; $i < count($tab)-1 ; $i++){
+			echo '<div class="text-article">';
+			$tabuser = getUser($tab[$i]['iduser']);
+			echo '<div class="article-image2">'.$tabuser[0]['nameuser'].' '. 
+			$tabuser[0]['firstname'].'</div>';
+			echo '<div class="contenu-article">';
+			echo '<div class="dateheure">'.$tab[$i]['datearticle'].'</div><br>';
+			echo "<p>".$tab[$i]['summaryarticle']."</p>";
+			echo '</div>';
+			echo '</div>';
+		}
+	
+	}
+}
+
 ?>

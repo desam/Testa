@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -63,6 +66,18 @@ if(isset($_GET['action'])&&!empty($_GET['action']))
         
         case 'saveuser':
         	include("Controller/Csaveuser.php");
+        break;
+        
+        case 'login':
+        	include("Controller/Clogin.php");
+        break;
+        
+        case 'deconnexion':
+        	include("Controller/Cdeconnexion.php");
+        break;
+        
+    	case 'user':
+        	include("Controller/Cuser.php");
         break;
         
         default:
