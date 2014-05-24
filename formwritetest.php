@@ -1,15 +1,7 @@
 <div id="writeatest">
 	<h2> Publier un avis </h2>
+<form action="index.php?action=savetest" method="post">
 	<table>
-	<tr>
-		<td>Titre:</td>
-		<td> <input type="text" name="title" size="70"></td>
-	</tr>
-	<tr>
-		<td>Domaine:</td>
-		<td> <input type="text" name="domain" size="70"></td>
-	</tr>
-	<tr>
 		<td>Marque:</td>
 		<td> <input type="text" name="marque" size="70"></td>
 	</tr>
@@ -20,29 +12,18 @@
 	<tr>
 		<td>R&eacute;sum&eacute;:</td>
 		<td>
-		<textarea name="textarea1" class="jqte-test">
-		<span style="color:rgb(0, 148, 133);"></span>
+		<textarea cols="63" rows="5" name="textarea1" maxlength="180">
 		</textarea>
-		<script>
-			$('.jqte-test').jqte();
-		</script>
 		</td>
 	</tr>
 	<tr>
-		<td>Contenu:</td>
-		<td>
-		<textarea name="textarea2" class="jqte-test2">
-			<span style="color:rgb(0, 148, 133);"></span>
-		</textarea>
-		<script>
-			$('.jqte-test2').jqte();
-		</script>
-		</td>
-	</tr>
-	<tr>
-	  	<td></td>
-		<td><input type="submit" name="Envoyer">
-		<input type="reset" name="Effacer"></td>
+	<td></td>
+	<td>
+	 <input type="submit" name="save" value="Enregistrer" class="submit" >
+	 <input type="reset" name="cancel" value="Annuler" class="submit">
+	</td>
 	</tr>
 	</table>
+	
+ </form>
 </div>

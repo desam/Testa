@@ -11,9 +11,11 @@
 <body>
 <div id="conteneur">
 <?php
+
 include("header.inc.php");
-include("menu.inc.php");
-include("lateral.inc.php");
+include("Model/connection.php");
+include("Model/savetest.php");
+
 
 if(isset($_GET['action'])&&!empty($_GET['action']))
 {
@@ -53,7 +55,15 @@ if(isset($_GET['action'])&&!empty($_GET['action']))
         
         case 'contact':
             include("contact.php");
-        break;  
+        break; 
+        
+        case 'savetest':
+        	include("Controller/Csavetest.php");
+        break; 
+        
+        case 'saveuser':
+        	include("Controller/Csaveuser.php");
+        break;
         
         default:
 			include("accueil.php");
@@ -63,8 +73,8 @@ if(isset($_GET['action'])&&!empty($_GET['action']))
 else{
     include("accueil.php");
 } 
-
 include("footer.inc.php");   
+
 ?>
 </div>
 </body>
