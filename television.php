@@ -1,3 +1,5 @@
+<?php $tabassoc = afficherTests(1); ?>
+
 <div id="big-television">
 <div class="filariane"> <a href="index.php?action=television">Television</a> > SONY KDL55W808 LED 3D </div>
 
@@ -14,19 +16,15 @@
 	lorem ac eros consequat, vel viverra  ligula semper. Donec vitae velit ut magna</p>
 	</div>
 	</p>
+<div id="newPubli" onclick="javascript:ajaxGetNewResults();"> 
+	<form>
+		<input type="hidden" id="datearticlehidden" name="datearticlehidden" value="<?php echo $tabassoc['lastarticle']['datearticle']; ?>">
+		<u>Nouvelles publications</u>
+	</form>
 </div>
-<?php $lastelem = afficherTests(1);  ?>
-
+</div>
 <div id="resultat"> </div>	
-<form action="javascript:ajaxGetNewResults();" method="POST">
-	<input type="text" id="datearticlehidden" name="datearticlehidden" value="<?php echo $lastelem['datearticle']; ?>">
-	<input type="button" value="IIICICII"/>
-</form>
-
-<?php
- 	
-	//genererJSON(1,$lastelem['datearticle']);
- 	
- 	//afficherNouveauxResultats();
- 	?>
 </div>
+<?php 
+echo $tabassoc['contenu'];
+?>

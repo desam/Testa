@@ -1,7 +1,8 @@
-#resultat{
-  background-color: #FFFF00;
-  height: 400px;
-  width: 400px;
+#newPubli{
+float:right;
+}
+#newPubli:hover{
+color:blue;
 }
 
 #msgconnecte{

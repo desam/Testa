@@ -100,21 +100,27 @@ function afficherTests($idproduit) {
 	$sql = "SELECT * FROM article WHERE idproduct=$idproduit ORDER BY datearticle DESC LIMIT 0,15;";
 	$ref = query($sql);
 	$tab = enreg($ref);
-
+	$var = "";
+	$tabassoc['lastarticle'] = null;
+	$tabassoc['contenu'] = null;
+	
 	if ((count($tab)-1)!=0){
+		$tabassoc['lastarticle']=$tab[0];
+		
 		for($i=0 ; $i < count($tab)-1 ; $i++){
-			echo '<div class="text-article">';
+			$var.='<div class="text-article">';
 			$tabuser = getUser($tab[$i]['iduser']);
-			echo '<div class="article-image2">'.$tabuser[0]['nameuser'].' '. 
+			$var.='<div class="article-image2">'.$tabuser[0]['nameuser'].' '. 
 			$tabuser[0]['firstname'].'</div>';
-			echo '<div class="contenu-article">';
-			echo '<div class="dateheure">'.$tab[$i]['datearticle'].'</div><br>';
-			echo "<p>".$tab[$i]['summaryarticle']."</p>";
-			echo '</div>';
-			echo '</div>';
+			$var.='<div class="contenu-article">';
+			$var.='<div class="dateheure">'.$tab[$i]['datearticle'].'</div><br>';
+			$var.="<p>".$tab[$i]['summaryarticle']."</p>";
+			$var.='</div>';
+			$var.='</div>';
 		}
-	return $tab[0];
+		$tabassoc['contenu']=$var;
 	}
+	return $tabassoc;
 	
 }
 
@@ -156,7 +162,7 @@ if(file_exists($url)) {
    	 	$contenu = $post->contenu; 
     	$date = $post->datepublication;
 		$iduser = $post->iduser;
-		$var.= '<div class="">';
+		$var.= '<div class="text-article">';
 		$tabuser = getUser($iduser);
 		$var.= '<div class="article-image2">'.$tabuser[0]['nameuser'].' '. 
 		$tabuser[0]['firstname'].'</div>';

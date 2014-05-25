@@ -31,10 +31,10 @@ function ajaxGetNewResults()
 							}
 							};	
 	
-	var nbhours = document.getElementById('date').value;						
+	var datepublished = document.getElementById('datearticlehidden').value;						
 	xhr.open("POST","./Model/serverside.php",true);
 	
 	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-	xhr.send("idorder="+ "&city="); 
+	xhr.send("datepubli="+ datepublished); 
 
 }
