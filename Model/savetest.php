@@ -113,11 +113,12 @@ function afficherTests($idproduit) {
 			echo '</div>';
 			echo '</div>';
 		}
-	
+	return $tab[0];
 	}
+	
 }
 
-function genererJSON($idproduct,$date){
+function genererJSON($idproduct,$date,$url){
 
 	$sql = "SELECT * FROM article WHERE idproduct =$idproduct 
 	AND datearticle > '$date' ORDER BY datearticle DESC LIMIT 0 , 20;";
@@ -137,10 +138,35 @@ if ((count($tab)-1)!=0) {
 
 $response['posts'] = $posts;
 
-$fp = fopen('style/results.json', 'w');
+$fp = fopen($url, 'w');
 fwrite($fp, json_encode($response));
 fclose($fp);
 
 }
 
+
+function afficherNouveauxResultats($url) {
+//Afficher le résultat si tout est OK
+if(file_exists($url)) {
+	$json =file_get_contents($url);
+	$obj = json_decode($json);		
+ 	$var = "";
+ 	
+ 	foreach($obj->posts as $post) {
+   	 	$contenu = $post->contenu; 
+    	$date = $post->datepublication;
+		$iduser = $post->iduser;
+		$var.= '<div class="">';
+		$tabuser = getUser($iduser);
+		$var.= '<div class="article-image2">'.$tabuser[0]['nameuser'].' '. 
+		$tabuser[0]['firstname'].'</div>';
+		$var.=  '<div class="contenu-article">';
+		$var.= '<div class="dateheure">'.$date.'</div><br>';
+		$var.= "<p>".$contenu."</p>";
+		$var.= '</div>';
+		$var.= '</div>';
+	}
+	return $var;
+ }
+ }
 ?>

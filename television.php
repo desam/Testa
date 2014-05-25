@@ -15,34 +15,18 @@
 	</div>
 	</p>
 </div>
+<?php $lastelem = afficherTests(1);  ?>
+
+<div id="resultat"> </div>	
+<form action="javascript:ajaxGetNewResults();" method="POST">
+	<input type="text" id="datearticlehidden" name="datearticlehidden" value="<?php echo $lastelem['datearticle']; ?>">
+	<input type="button" value="IIICICII"/>
+</form>
 
 <?php
-//Lancer la fonction au bout de 15s et récupérer la dernière date article en entrée 
-	genererJSON(1,'2014-05-24 15:49:13');
-
-//Afficher le résultat si tout est OK
-	$json =file_get_contents("style/results.json");
-	$obj = json_decode($json);		
  	
- 	$vars = get_object_vars($obj);
+	//genererJSON(1,$lastelem['datearticle']);
  	
- 	foreach($obj->posts as $post){
-    $contenu = $post->contenu;
-    $date = $post->datepublication;
-	$iduser = $post->iduser;
-	echo '<div class="">';
-			$tabuser = getUser($iduser);
-			echo '<div class="article-image2">'.$tabuser[0]['nameuser'].' '. 
-			$tabuser[0]['firstname'].'</div>';
-			echo '<div class="contenu-article">';
-			echo '<div class="dateheure">'.$date.'</div><br>';
-			echo "<p>".$contenu."</p>";
-			echo '</div>';
-			echo '</div>';
-
-	}
- 	
- 	afficherTests(1); 
- 	
+ 	//afficherNouveauxResultats();
  	?>
 </div>
