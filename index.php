@@ -11,6 +11,14 @@ session_start();
 	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="style/ajax.js"></script>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div id="conteneur">
@@ -79,6 +87,22 @@ if(isset($_GET['action'])&&!empty($_GET['action']))
         
     	case 'user':
         	include("Controller/Cuser.php");
+        break;
+        
+        case 'consommation':
+        	include("Controller/Cconsommation.php");
+        break;
+        
+        case 'afficherconso':
+        	include("televisiongeneral.php");
+        break;
+        
+        case 'product';
+        	include("television.php");
+        break;
+        
+        case 'saveconsomation':
+        	include("Controller/Csaveconsommation.php");
         break;
         
         default:

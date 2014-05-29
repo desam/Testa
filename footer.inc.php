@@ -5,7 +5,7 @@
 	<td class="footcell"> <a href="">A propos</a></td>
 </tr>
 <tr>
-	<td class="footcell"> <a href="."> Nouveau produit</a> </td>
+	<td class="footcell"> <a href="index.php?action=consommation"> Nouvel produit</a> </td>
 	<td class="footcell"> <a href="index.php?action=createnewaccount">Cr&eacute;er un nouveau compte</a></td>
 	<td class="footcell"></td>
 </tr>

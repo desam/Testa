@@ -1,20 +1,23 @@
 <?php
 
 function Createtest() {
-	if (!empty($_POST['marque'])&&!empty($_POST['model'])&&!empty($_POST['textarea1']))
+	if (!empty($_POST['marque'])&&!empty($_POST['model'])&&!empty($_POST['textarea1']) 
+	&&!empty($_POST['idproduct']))
 	{
 	$marque = addslashes($_POST['marque']);
 	$model = addslashes($_POST['model']);
 	$contenu =addslashes($_POST['textarea1']);
+	$idproduct=$_POST['idproduct'];
 	
 	$sql="INSERT INTO `article` (`idarticle`, `summaryarticle`, `marque`,`model`,
 	 `datearticle`, `idproduct`, `iduser`) VALUES (NULL,'$contenu','$marque','$model',
-	  CURRENT_TIMESTAMP, '1', '1');";
+	  CURRENT_TIMESTAMP, $idproduct, '1');";
 	query($sql);
 	return true;
 	}
-	else
+	else{
 		return false;
+	}
 }
 
 function CreateUser() {
@@ -94,9 +97,15 @@ function getUser($id) {
 	return $tab;
 }
 
+function getProduct($id){
+	$sql="SELECT * FROM product WHERE idproduct=$id";
+	$ref = query($sql);
+	$tab = enreg($ref);
+	return $tab;
+}
+
 
 function afficherTests($idproduit) {
-	$idproduit = 1;
 	$sql = "SELECT * FROM article WHERE idproduct=$idproduit ORDER BY datearticle DESC LIMIT 0,15;";
 	$ref = query($sql);
 	$tab = enreg($ref);
@@ -154,7 +163,7 @@ fclose($fp);
 function afficherNouveauxResultats($url) {
 //Afficher le résultat si tout est OK
 if(file_exists($url)) {
-	$json =file_get_contents($url);
+	$json= file_get_contents($url);
 	$obj = json_decode($json);		
  	$var = "";
  	
@@ -174,5 +183,99 @@ if(file_exists($url)) {
 	}
 	return $var;
  }
+ }
+ 
+ function DeroulerMarques() {
+ 	$sql = "SELECT * FROM trademark;";
+ 	$ref = query($sql);
+ 	$tab = enreg($ref);
+ 	$var = "";
+ 
+ 	if((count($tab)-1)!=0) {
+		$var.= '<select name="marque" size="1">';
+		for($i=0 ; $i<count($tab)-1 ; $i++) {
+  	 	$var.='<option value="'.$tab[$i]['idtrademark'].'">'.$tab[$i]['libelletrademark'].'</option>';
+    	}
+    	$var.= '</select>';
+    }
+    return $var;
+ }
+ 
+ function saveconsommation() {
+ 	$marque = $_POST['marque'];
+ 	$model = $_POST['modele'];
+ 	$idtrademark = $_POST['marque'];
+ 	$publication = $_POST['publication'];
+ 	$insertimage = $_POST['inserer-image'];
+ 	$videos = $_POST['videos'];
+ 	
+ 	$sql = "INSERT INTO `product` (`idproduct` ,`libelleproduct` ,`caracteristicsproduct` ,
+	`images`,`videos`,`idtrademark`,`iddomain`,iduser, datepubli) VALUES (null, '$model','$publication','$insertimage',
+ 	'$videos',$idtrademark,0,0,null)";
+ 	
+ 	$ref = query($sql); 	
+ }
+ 
+ function getIdtrademark($libelle) {
+ 	$sql = "SELECT * FROM trademark WHERE libelletrademark='$libelle';";
+	$ref = query($sql);
+	$tab = enreg($ref);
+	if((count($tab)-1)!=0) {
+		return $tab[0]['idtrademark'];
+	}
+	return false;	
+ }
+ 
+function getTrademark($id){
+	$sql ="SELECT * FROM trademark WHERE idtrademark=$id;";
+	$ref = query($sql);
+	$tab = enreg($ref);
+	return $tab;
+}
+
+ 
+ function afficherConsommation($modele,$trademark) {
+ 
+ 	$idtrademark = getIdtrademark($trademark); 	
+ 	$sql = "SELECT * FROM product WHERE libelleproduct='$modele' AND idtrademark=$idtrademark
+ 	ORDER BY datepubli DESC;";
+ 	$ref = query($sql);
+ 	$tab = enreg($ref);
+ 	$var = "";
+ 	
+ 	 	if((count($tab)-1)!=0) {
+			for($i=0; $i<count($tab)-1; $i++) {			 	
+				$var.='<div class="contenu-article">'; 
+				$var.='<div class="dateheure">'.$tab[$i]['datepubli'].'</div><br>';
+				$tabuser = getUser($tab[$i]['iduser']);
+				$var.="<div><u>".$tabuser[0]['nameuser']." ".$tabuser[0]['firstname']."</u></div>";
+				$var.='<p>'.$tab[$i]['caracteristicsproduct'].'</p>';
+				$var.='<a class="next" href="index.php?action=product&amp;id='.$tab[$i]['idproduct'].'"> Next &gt;&gt;</a>';
+				$var.='</div>';
+ 			}
+ 		}
+ 		return $var;
+ }
+ 
+ function afficherDerniereconso($iddomain){
+	$sql = "SELECT * FROM `product` WHERE iddomain=$iddomain ORDER BY datepubli DESC LIMIT 0,5";
+ 	$ref = query($sql);
+ 	$tab = enreg($ref);
+	$var = "";
+	
+ 	 	if((count($tab)-1)!=0) {
+			for($i=0; $i<count($tab)-1; $i++) {			 	
+				$var.='<div class="contenu-articlez">'; 
+				$var.='<div class="contenu-title"><h2>'.$tab[$i]['libelleproduct'].'</h4></div>'; 
+				$var.='<div class="dateheurez">'.$tab[$i]['datepubli'].'</div><br>';
+				$tabuser = getUser($tab[$i]['iduser']);
+				$var.="<div><u>".$tabuser[0]['nameuser']." ".$tabuser[0]['firstname']."</u></div>";
+				$var.='<p>'.$tab[$i]['caracteristicsproduct'].'</p>';
+				$var.='<a class="nextz" href="index.php?action=product&amp;id='.$tab[$i]['idproduct'].'"> Next &gt;&gt;</a>';
+				$var.='</div>';
+ 			}
+ 		}
+ 		
+ 	return $var;
  }
 ?>
