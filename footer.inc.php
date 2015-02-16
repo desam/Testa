@@ -10,5 +10,5 @@
 	<td class="footcell"></td>
 </tr>
 </table>
-<p class="champs"> Site con&ccedil;u et d&eacute;velopp&eacute; par Shanmugalingam SURESHKUMAR - Derni&egrave;re mise &agrave; jour le 28 d&eacute;c. 2012 </p>
+<p class="champs"> Site con&ccedil;u et d&eacute;velopp&eacute; par  - Derni&egrave;re mise &agrave; jour le 28 d&eacute;c. 2012 </p>
 </div>
